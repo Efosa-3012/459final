@@ -1,7 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 import { BookModel } from "../models/Books.js";
 import { UserModel } from "../models/Users.js";
+import { verifyToken } from "./users.js";
 
 const router = express.Router();
 
@@ -14,7 +16,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", verifyToken, async (req, res) => {
   const book = new BookModel(req.body);
   try {
     const response = await book.save();
@@ -24,7 +26,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/", async (req, res) => {
+router.put("/", verifyToken, async (req, res) => {
   try {
     const book = await BookModel.findById(req.body.bookID);
     const user = await UserModel.findById(req.body.userID);

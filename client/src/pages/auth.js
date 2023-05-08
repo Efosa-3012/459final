@@ -85,7 +85,7 @@ const Form = ({
   onSubmit,
 }) => {
   return (
-    <div className="register">
+    <div className="auth-container">
       <form onSubmit={onSubmit}>
         <h2>{label}</h2>
         <div className="form-group">

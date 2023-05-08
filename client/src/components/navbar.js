@@ -14,16 +14,23 @@ export const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="navbar">
+      <h2 className="nav-h2">COSC 459</h2>
       <Link to="/">Home</Link>
-
       <Link to="/createbook">Create Book</Link>
-      <Link to="/savedbooks">Saved Books</Link>
       {!cookies.access_token ? (
         <Link to="/auth">Login/Register</Link>
       ) : (
-        <button onClick={Logout}>Loogout</button>
+        <>
+          <Link to="/savedbooks">Saved Books</Link>
+          <button onClick={Logout}>Logout</button>
+        </>
       )}
     </div>
   );
 };
+
+//provide styling for the navbar
+// all the links should be left aligned
+
+// the logout button should be right aligned
